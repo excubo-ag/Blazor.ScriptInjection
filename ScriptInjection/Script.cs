@@ -13,7 +13,7 @@ namespace Excubo.Blazor.ScriptInjection
         public string Src
         {
             get => src;
-            set => src = System.Uri.IsWellFormedUriString(value, UriKind.RelativeOrAbsolute) ? value : throw new ArgumentException("Invalid URI");
+            set => src = Uri.IsWellFormedUriString(value, UriKind.RelativeOrAbsolute) ? value : throw new ArgumentException("Invalid URI");
         }
         [Parameter]
         public bool Async { get; set; }
@@ -23,7 +23,10 @@ namespace Excubo.Blazor.ScriptInjection
         {
             if (ScriptInjectionTracker.NeedsInjection(Src))
             {
-                builder.AddMarkupContent(0, $"<script src=\"{Src}\" {(Async ? "async" : "")} {(Defer ? "defer" : "")} type=\"text/javascript\"></script>");
+                var async_attribute = Async ? "async" : "";
+                var defer_attribute = Defer ? "defer" : "";
+                const string type = "text/javascript";
+                builder.AddMarkupContent(0, $"<script src=\"{Src}\" {async_attribute} {defer_attribute} type=\"{type}\"></script>");
             }
             base.BuildRenderTree(builder);
         }

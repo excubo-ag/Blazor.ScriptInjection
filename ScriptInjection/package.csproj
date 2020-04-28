@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Stefan Lörwald</Authors>
+    <Company>excubo-ag</Company>
+    <Version>1.0.1</Version>
+    <RepositoryUrl>https://github.com/excubo-ag/Blazor.ScriptInjection</RepositoryUrl>
+    <Description>Excubo.Blazor.ScriptInjection allows you to inject a script tag into the pages body on demand, with the guarantee that the script tag will appear once and only once.</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="package.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
