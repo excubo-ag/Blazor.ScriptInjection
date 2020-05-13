@@ -36,7 +36,7 @@ dotnet add package Excubo.Blazor.ScriptInjection --version 1.0.2
 ```cs
     //...
     //using Excubo.Blazor.ScriptInjection;
-    services.AddScriptInjection();
+    services.AddScriptInjection(); // Tip: Use Excubo.Analyzers.DependencyInjectionValidation for warnings when you forget such a dependency
     //...
 ```
 
