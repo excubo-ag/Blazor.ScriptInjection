@@ -3,7 +3,7 @@ using Excubo.Blazor.ScriptInjection;
 using System;
 using Xunit;
 
-namespace Tests_ScriptInjection
+namespace Excubo.Blazor.Tests_ScriptInjection
 {
     public class ScriptTests : ComponentTestFixture
     {

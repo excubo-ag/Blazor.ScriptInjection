@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Excubo.Blazor.ScriptInjection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tests_ScriptInjection
+namespace Excubo.Blazor.Tests_ScriptInjection
 {
     public class ServiceExtensionTests
     {
