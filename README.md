@@ -9,11 +9,29 @@ This library brings the `script` tag to Blazor. Since components can occur any n
 This can be used to lazily load javascript sources for any component that requires javascript. As a component library author, you can use this to relieve your users of the burden of adding script tags to their pages' `<head>`. Simply add `<Script Src="_content/My.Library/code.js">` to any component in your library that requires that file. `Excubo.Blazor.ScriptInjection` makes sure the script gets loaded once and only once, regardless of how many components you have, and regardless of how many components your users use.
 
 
-Excubo.Blazor.ScriptInjection is distributed [via nuget.org](https://www.nuget.org/packages/Excubo.Blazor.ScriptInjection/).
-
 ### Usage
 
-#### 1. Add ScriptInjection to your services
+### 1. Install the nuget package Excubo.Blazor.ScriptInjection
+
+Excubo.Blazor.ScriptInjection is distributed [via nuget.org](https://www.nuget.org/packages/Excubo.Blazor.ScriptInjection/).
+![Nuget](https://img.shields.io/nuget/v/Excubo.Blazor.ScriptInjection)
+
+#### Package Manager:
+```ps
+Install-Package Excubo.Blazor.ScriptInjection -Version 1.0.2
+```
+
+#### .NET Cli:
+```cmd
+dotnet add package Excubo.Blazor.ScriptInjection --version 1.0.2
+```
+
+#### Package Reference
+```xml
+<PackageReference Include="Excubo.Blazor.ScriptInjection" Version="1.0.2" />
+```
+
+#### 2. Add ScriptInjection to your services
 
 ```cs
     //...
@@ -22,7 +40,7 @@ Excubo.Blazor.ScriptInjection is distributed [via nuget.org](https://www.nuget.o
     //...
 ```
 
-#### 2. Use the Script component
+#### 3. Use the Script component
 
 ```html
 <h3>My component requiring some js</h3>
