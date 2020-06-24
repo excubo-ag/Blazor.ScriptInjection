@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.JSInterop;
 using System;
+using System.Threading.Tasks;
 
 namespace Excubo.Blazor.ScriptInjection
 {
@@ -21,14 +23,47 @@ namespace Excubo.Blazor.ScriptInjection
         public bool Defer { get; set; }
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            if (ScriptInjectionTracker.NeedsInjection("self"))
+            {
+                builder.AddMarkupContent(0, @"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/bootstrap.js""></script>");
+            }
             if (ScriptInjectionTracker.NeedsInjection(Src))
             {
-                var async_attribute = Async ? "async" : "";
-                var defer_attribute = Defer ? "defer" : "";
                 const string type = "text/javascript";
-                builder.AddMarkupContent(0, $"<script src=\"{Src}\" {async_attribute} {defer_attribute} type=\"{type}\"></script>");
+                builder.OpenElement(1, "script");
+                builder.AddAttribute(2, "src", Src);
+                if (Async)
+                {
+                    builder.AddAttribute(3, "async", true);
+                }
+                if (Defer)
+                {
+                    builder.AddAttribute(4, "defer", true);
+                }
+                builder.AddAttribute(5, "type", type);
+                builder.AddAttribute(6, "onload", $"window.Excubo.ScriptInjection.Notify('{Src}')");
+                builder.CloseElement();
             }
-            base.BuildRenderTree(builder);
+        }
+        [Inject] private IJSRuntime js { get; set; }
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender && !ScriptInjectionTracker.Initialized)
+            {
+                ScriptInjectionTracker.Initialized = true;
+                while (!await js.InvokeAsync<bool>("hasOwnProperty", "Excubo"))
+                {
+                    await Task.Yield();
+                    await Task.Delay(10);
+                }
+                while (!await js.InvokeAsync<bool>("Excubo.hasOwnProperty", "ScriptInjection"))
+                {
+                    await Task.Yield();
+                    await Task.Delay(10);
+                }
+                await js.InvokeVoidAsync("Excubo.ScriptInjection.Register", DotNetObjectReference.Create(ScriptInjectionTracker));
+            }
+            await base.OnAfterRenderAsync(firstRender);
         }
     }
 }
