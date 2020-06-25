@@ -1,0 +1,30 @@
+﻿@page "/"
+@inject Excubo.Blazor.ScriptInjection.IScriptInjectionTracker sit
+@inject IJSRuntime js
+
+<Excubo.Blazor.ScriptInjection.Script Src="lazy.js" />
+
+<button @onclick="Run">Execute code in lazy.js</button>
+
+@code {
+    private async Task Run()
+    {
+        await sit.LoadedAsync("lazy.js");
+        try
+        {
+            await js.InvokeVoidAsync("console.log", "foo");
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            await js.InvokeVoidAsync("helloworld.again");
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+}
