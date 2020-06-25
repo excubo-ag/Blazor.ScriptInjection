@@ -30,25 +30,28 @@ namespace Excubo.Blazor.ScriptInjection
             if (ScriptInjectionTracker.OnloadNotification && ScriptInjectionTracker.NeedsInjection("self"))
             {
                 var bootstrap_src = ScriptInjectionTracker.GzippedBootstrap ? "bootstrap.min.js.gz" : "bootstrap.min.js";
-                builder.AddMarkupContent(0, $@"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/{bootstrap_src}""></script>");
+                builder.OpenElement(0, "script");
+                builder.AddAttribute(1, "src", $"_content/Excubo.Blazor.ScriptInjection/{bootstrap_src}");
+                builder.AddAttribute(2, "type", "text/javascript");
+                builder.CloseElement();
             }
             if (ScriptInjectionTracker.NeedsInjection(Src))
             {
                 const string type = "text/javascript";
-                builder.OpenElement(1, "script");
-                builder.AddAttribute(2, "src", Src);
+                builder.OpenElement(3, "script");
+                builder.AddAttribute(4, "src", Src);
                 if (Async)
                 {
-                    builder.AddAttribute(3, "async", true);
+                    builder.AddAttribute(5, "async", true);
                 }
                 if (Defer)
                 {
-                    builder.AddAttribute(4, "defer", true);
+                    builder.AddAttribute(6, "defer", true);
                 }
-                builder.AddAttribute(5, "type", type);
+                builder.AddAttribute(7, "type", type);
                 if (ScriptInjectionTracker.OnloadNotification)
                 {
-                    builder.AddAttribute(6, "onload", $"window.Excubo.ScriptInjection.Notify('{Src}')");
+                    builder.AddAttribute(8, "onload", $"window.Excubo.ScriptInjection.Notify('{Src}')");
                 }
                 builder.CloseElement();
             }

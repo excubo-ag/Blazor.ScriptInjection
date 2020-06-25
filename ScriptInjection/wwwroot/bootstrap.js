@@ -6,7 +6,7 @@ window.Excubo.ScriptInjection = window.Excubo.ScriptInjection || {
             si.Loaded = si.Loaded || new Set();
             si.Loaded.add(e);
         } else {
-            si.Reference.invokeMethodAsync('Loaded', e);
+            si.Reference.invokeMethodAsync('MarkLoaded', e);
         }
     },
     Register: (dotnet_reference) => {
@@ -14,9 +14,8 @@ window.Excubo.ScriptInjection = window.Excubo.ScriptInjection || {
         si.Reference = dotnet_reference;
         if (si.Loaded != undefined) {
             for (let item of si.Loaded) {
-                dotnet_reference.invokeMethodAsync('Loaded', item);
+                dotnet_reference.invokeMethodAsync('MarkLoaded', item);
             }
-            console.log(JSON.stringify(si.Loaded) + ' notified with delay');
         }
     }
 };

@@ -24,19 +24,21 @@ namespace Excubo.Blazor.ScriptInjection
             {
                 if (set.Add(uri))
                 {
-                    load_markers.Add(uri, CreateBlockUntilLoadedAsync());
+                    if (!load_markers.ContainsKey(uri))
+                    {
+                        load_markers.Add(uri, CreateBlockUntilLoadedAsync());
+                    }
                     return true;
                 }
                 return false;
             }
         }
-
         [JSInvokable]
-        public void Loaded(string uri)
+        public void MarkLoaded(string uri)
         {
             if (!load_markers.ContainsKey(uri))
             {
-                return;
+                load_markers.Add(uri, CreateBlockUntilLoadedAsync());
             }
             var (_, semaphore) = load_markers[uri];
             semaphore.Release();
@@ -51,7 +53,7 @@ namespace Excubo.Blazor.ScriptInjection
         }
         private (Task Task, SemaphoreSlim Semaphore) CreateBlockUntilLoadedAsync()
         {
-            var semaphore = new SemaphoreSlim(1, 1);
+            var semaphore = new SemaphoreSlim(0, 1);
             return (Task: WaitAsync(semaphore), Semaphore: semaphore);
         }
         private Task WaitAsync(SemaphoreSlim semaphore)
