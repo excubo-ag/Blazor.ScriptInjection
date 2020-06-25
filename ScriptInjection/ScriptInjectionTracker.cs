@@ -7,9 +7,13 @@ namespace Excubo.Blazor.ScriptInjection
 {
     internal class ScriptInjectionTracker : IScriptInjectionTracker
     {
-        public ScriptInjectionTracker(bool onload_notification)
+        public bool Initialized { get; set; }
+        public bool OnloadNotification { get; }
+        public bool GzippedBootstrap { get; }
+        public ScriptInjectionTracker(bool onload_notification, bool gzipped_bootstrap)
         {
             OnloadNotification = onload_notification;
+            GzippedBootstrap = gzipped_bootstrap;
         }
         private readonly HashSet<string> set = new HashSet<string>();
         private readonly Dictionary<string, (Task Task, SemaphoreSlim Semaphore)> load_markers = new Dictionary<string, (Task Task, SemaphoreSlim Semaphore)>();
@@ -26,8 +30,6 @@ namespace Excubo.Blazor.ScriptInjection
                 return false;
             }
         }
-        public bool Initialized { get; set; }
-        public bool OnloadNotification { get; }
 
         [JSInvokable]
         public void Loaded(string uri)

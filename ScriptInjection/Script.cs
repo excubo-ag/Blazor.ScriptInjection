@@ -27,9 +27,10 @@ namespace Excubo.Blazor.ScriptInjection
             {
                 return;
             }
-            if (ScriptInjectionTracker.NeedsInjection("self"))
+            if (ScriptInjectionTracker.OnloadNotification && ScriptInjectionTracker.NeedsInjection("self"))
             {
-                builder.AddMarkupContent(0, @"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/bootstrap.js""></script>");
+                var bootstrap_src = ScriptInjectionTracker.GzippedBootstrap ? "bootstrap.min.js.gz" : "bootstrap.min.js";
+                builder.AddMarkupContent(0, $@"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/{bootstrap_src}""></script>");
             }
             if (ScriptInjectionTracker.NeedsInjection(Src))
             {

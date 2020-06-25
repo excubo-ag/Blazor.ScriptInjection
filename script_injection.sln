@@ -7,9 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptInjection", "ScriptIn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests_ScriptInjection", "Tests_ScriptInjection\Tests_ScriptInjection.csproj", "{F7138462-58C1-4371-BF31-725BD18016D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject_ServerSide", "TestProject_ServerSide\TestProject_ServerSide.csproj", "{172B119A-1B6F-4EB5-97AD-CFF760C099A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject_ServerSide", "TestProject_ServerSide\TestProject_ServerSide.csproj", "{172B119A-1B6F-4EB5-97AD-CFF760C099A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject_ClientSide", "TestProject_ClientSide\TestProject_ClientSide.csproj", "{29960BFB-7148-49A9-A455-BBB8DD0159FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject_ClientSide", "TestProject_ClientSide\TestProject_ClientSide.csproj", "{29960BFB-7148-49A9-A455-BBB8DD0159FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{36738B16-1039-4B7F-ADB4-4046E6A67681}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
