@@ -23,6 +23,10 @@ namespace Excubo.Blazor.ScriptInjection
         public bool Defer { get; set; }
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            if (string.IsNullOrEmpty(Src) || !Uri.IsWellFormedUriString(Src, UriKind.RelativeOrAbsolute))
+            {
+                return;
+            }
             if (ScriptInjectionTracker.NeedsInjection("self"))
             {
                 builder.AddMarkupContent(0, @"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/bootstrap.js""></script>");
@@ -53,12 +57,10 @@ namespace Excubo.Blazor.ScriptInjection
                 ScriptInjectionTracker.Initialized = true;
                 while (!await js.InvokeAsync<bool>("hasOwnProperty", "Excubo"))
                 {
-                    await Task.Yield();
                     await Task.Delay(10);
                 }
                 while (!await js.InvokeAsync<bool>("Excubo.hasOwnProperty", "ScriptInjection"))
                 {
-                    await Task.Yield();
                     await Task.Delay(10);
                 }
                 await js.InvokeVoidAsync("Excubo.ScriptInjection.Register", DotNetObjectReference.Create(ScriptInjectionTracker));
