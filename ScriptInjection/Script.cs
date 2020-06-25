@@ -45,14 +45,17 @@ namespace Excubo.Blazor.ScriptInjection
                     builder.AddAttribute(4, "defer", true);
                 }
                 builder.AddAttribute(5, "type", type);
-                builder.AddAttribute(6, "onload", $"window.Excubo.ScriptInjection.Notify('{Src}')");
+                if (ScriptInjectionTracker.OnloadNotification)
+                {
+                    builder.AddAttribute(6, "onload", $"window.Excubo.ScriptInjection.Notify('{Src}')");
+                }
                 builder.CloseElement();
             }
         }
         [Inject] private IJSRuntime js { get; set; }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender && !ScriptInjectionTracker.Initialized)
+            if (firstRender && ScriptInjectionTracker.OnloadNotification && !ScriptInjectionTracker.Initialized)
             {
                 ScriptInjectionTracker.Initialized = true;
                 while (!await js.InvokeAsync<bool>("hasOwnProperty", "Excubo"))

@@ -1,5 +1,4 @@
 ﻿using Microsoft.JSInterop;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +7,10 @@ namespace Excubo.Blazor.ScriptInjection
 {
     internal class ScriptInjectionTracker : IScriptInjectionTracker
     {
+        public ScriptInjectionTracker(bool onload_notification)
+        {
+            OnloadNotification = onload_notification;
+        }
         private readonly HashSet<string> set = new HashSet<string>();
         private readonly Dictionary<string, (Task Task, SemaphoreSlim Semaphore)> load_markers = new Dictionary<string, (Task Task, SemaphoreSlim Semaphore)>();
         private readonly object sync = new object();
@@ -24,6 +27,8 @@ namespace Excubo.Blazor.ScriptInjection
             }
         }
         public bool Initialized { get; set; }
+        public bool OnloadNotification { get; }
+
         [JSInvokable]
         public void Loaded(string uri)
         {
