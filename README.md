@@ -14,7 +14,7 @@ This can be used to lazily load javascript sources for any component that requir
 
 Since version 2.0.0, you get a utility function that only returns when the script has been loaded. This makes sure that your javascript code is available before you try to execute it.
 This behavior is optional (but enabled by default). If you do not need it at all, simply disable it when you add the `ScriptInjection` service.
-This notification adds a payload of 464 bytes to your page (252 bytes, if your web server supports gzipped files and you activate the gzipped option on the service: `services.AddScriptInjection(gzipped_bootstrap: true)`).
+This notification adds a payload of 409 bytes to your page (214 bytes, if your web server supports gzipped files and you activate the gzipped option on the service: `services.AddScriptInjection(gzipped_bootstrap: true)`).
 
 ## Usage
 
@@ -25,17 +25,17 @@ Excubo.Blazor.ScriptInjection is distributed [via nuget.org](https://www.nuget.o
 
 #### Package Manager:
 ```ps
-Install-Package Excubo.Blazor.ScriptInjection -Version 2.0.0
+Install-Package Excubo.Blazor.ScriptInjection -Version 2.0.3
 ```
 
 #### .NET Cli:
 ```cmd
-dotnet add package Excubo.Blazor.ScriptInjection --version 2.0.0
+dotnet add package Excubo.Blazor.ScriptInjection --version 2.0.3
 ```
 
 #### Package Reference
 ```xml
-<PackageReference Include="Excubo.Blazor.ScriptInjection" Version="2.0.0" />
+<PackageReference Include="Excubo.Blazor.ScriptInjection" Version="2.0.3" />
 ```
 
 ### 2. Add ScriptInjection to your services

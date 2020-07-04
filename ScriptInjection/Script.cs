@@ -62,9 +62,7 @@ namespace Excubo.Blazor.ScriptInjection
             if (firstRender && ScriptInjectionTracker.OnloadNotification && !ScriptInjectionTracker.Initialized)
             {
                 ScriptInjectionTracker.Initialized = true;
-                // the following code should be used, such that the exception/retry loop would not be necessary. However, this is triggering the bug https://github.com/dotnet/aspnetcore/issues/23448
-#if false
-                while (!await js.InvokeAsync<bool>("hasOwnProperty", "Excubo"))
+                while (!await js.InvokeAsync<bool>("window.hasOwnProperty", "Excubo"))
                 {
                     await Task.Delay(10);
                 }
@@ -72,22 +70,7 @@ namespace Excubo.Blazor.ScriptInjection
                 {
                     await Task.Delay(10);
                 }
-#else
-            retry:
-                try
-                {
-                    while (!await js.InvokeAsync<bool>("Excubo.hasOwnProperty", "ScriptInjection"))
-                    {
-                        await Task.Delay(10);
-                    }
-                }
-                catch
-                {
-                    await Task.Delay(10);
-                    goto retry;
-                }
             }
-#endif
             await js.InvokeVoidAsync("Excubo.ScriptInjection.Register", DotNetObjectReference.Create(ScriptInjectionTracker));
             await base.OnAfterRenderAsync(firstRender);
         }
