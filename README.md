@@ -55,11 +55,13 @@ dotnet add package Excubo.Blazor.ScriptInjection --version 2.0.3
 
 ```html
 <h3>My component requiring some js</h3>
-<Script Src="path/to/code.js" Async="true" Defer="false" />
+<Excubo.Blazor.ScriptInjection.Script Src="path/to/code.js" Async="true" Defer="false" />
 <!--...-->
 ```
 
-Note: `Async` and `Defer` are `false` by default. It is recommended to use these options wherever possible to improve page performance. 
+Note: `Async` and `Defer` are `false` by default. It is recommended to use these options wherever possible to improve page performance.
+
+⚠️ At the moment, Blazor doesn't handle `<Script />` correctly, due to a bug (see [#24159](https://github.com/dotnet/aspnetcore/issues/24159)). You therefore need to fully qualify the components name: `<Excubo.Blazor.ScriptInjection.Script />`.
 
 ### 4. Wait for the script to be loaded (optional)
 
