@@ -6,7 +6,7 @@
 
 This library brings the `script` tag to Blazor. Since components can occur any number of times, the usage of `script` tags in components is usually frowned upon. The `Script` component in `Excubo.Blazor.ScriptInjection` is different, as it makes sure that the source file is only put into the page's body once.
 
-This can be used to lazily load javascript sources for any component that requires javascript. As a component library author, you can use this to relieve your users of the burden of adding script tags to their pages' `<head>`. Simply add `<Script Src="_content/My.Library/code.js">` to any component in your library that requires that file. `Excubo.Blazor.ScriptInjection` makes sure the script gets loaded once and only once, regardless of how many components you have, and regardless of how many components your users use.
+This can be used to lazily load javascript sources for any component that requires javascript. As a component library author, you can use this to relieve your users of the burden of adding script tags to their pages' `<head>`. Simply add `<Script Src="_content/My.Library/code.js"></Script>` to any component in your library that requires that file. `Excubo.Blazor.ScriptInjection` makes sure the script gets loaded once and only once, regardless of how many components you have, and regardless of how many components your users use.
 
 ## Changelog
 
@@ -55,13 +55,13 @@ dotnet add package Excubo.Blazor.ScriptInjection --version 2.0.3
 
 ```html
 <h3>My component requiring some js</h3>
-<Excubo.Blazor.ScriptInjection.Script Src="path/to/code.js" Async="true" Defer="false" />
+<Script Src="path/to/code.js" Async="true" Defer="false"></Script>
 <!--...-->
 ```
 
 Note: `Async` and `Defer` are `false` by default. It is recommended to use these options wherever possible to improve page performance.
 
-⚠️ At the moment, Blazor doesn't handle `<Script />` correctly, due to a bug (see [#24159](https://github.com/dotnet/aspnetcore/issues/24159)). You therefore need to fully qualify the components name: `<Excubo.Blazor.ScriptInjection.Script />`.
+⚠️ At the moment, Blazor doesn't handle `<Script />` correctly, due to a bug (see [#24159](https://github.com/dotnet/aspnetcore/issues/24159)). You therefore need to either fully qualify the components name (`<Excubo.Blazor.ScriptInjection.Script />`) or have an opening and closing tag (`<Script></Script>`). ⚠️
 
 ### 4. Wait for the script to be loaded (optional)
 
@@ -116,7 +116,7 @@ Make sure you use the `_content/[Name of Library]` prefix in the `Src` parameter
 
 ```html
 <h3>My reusable component in an awesome library (requiring some js)</h3>
-<Script Src="_content/MyLibrary/path/to/code.js" Async="true" Defer="false" />
+<Script Src="_content/MyLibrary/path/to/code.js" Async="true" Defer="false"></Script>
 <!--...-->
 ```
 
