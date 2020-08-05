@@ -1,20 +1,20 @@
 ﻿using Bunit;
-using Bunit.Mocking.JSInterop;
+using Bunit.TestDoubles.JSInterop;
 using Excubo.Blazor.ScriptInjection;
 using System;
 using Xunit;
 
 namespace Excubo.Blazor.Tests_ScriptInjection
 {
-    public class ScriptNotificationTests : ComponentTestFixture
+    public class ScriptNotificationTests : TestContext
     {
         [Fact]
         public void AddOnceEmpty()
         {
-            Services.AddScriptInjection();
-            var js = Services.AddMockJsRuntime();
-            IRenderedComponent<Script> cut = null;
-            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<Script>());
+            _ = Services.AddScriptInjection();
+            var js = Services.AddMockJSRuntime();
+            IRenderedComponent<AddScript> cut = null;
+            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<AddScript>());
             cut.MarkupMatches("");
         }
         [InlineData("code.js")]
@@ -22,10 +22,10 @@ namespace Excubo.Blazor.Tests_ScriptInjection
         [Theory]
         public void AddOnceValidUri(string uri)
         {
-            Services.AddScriptInjection();
-            var js = Services.AddMockJsRuntime();
-            IRenderedComponent<Script> cut = null;
-            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<Script>((nameof(Script.Src), uri)));
+            _ = Services.AddScriptInjection();
+            var js = Services.AddMockJSRuntime();
+            IRenderedComponent<AddScript> cut = null;
+            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<AddScript>((nameof(AddScript.Src), uri)));
             cut.MarkupMatches($@"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/bootstrap.min.js""></script><script src=""{uri}"" type=""text/javascript"" onload=""window.Excubo.ScriptInjection.Notify('{uri}')""></script>");
         }
         [InlineData("code.js")]
@@ -33,10 +33,10 @@ namespace Excubo.Blazor.Tests_ScriptInjection
         [Theory]
         public void AddOnceValidUriWithAsyncEnabled(string uri)
         {
-            Services.AddScriptInjection();
-            var js = Services.AddMockJsRuntime();
-            IRenderedComponent<Script> cut = null;
-            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<Script>((nameof(Script.Src), uri), (nameof(Script.Async), true)));
+            _ = Services.AddScriptInjection();
+            var js = Services.AddMockJSRuntime();
+            IRenderedComponent<AddScript> cut = null;
+            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<AddScript>((nameof(AddScript.Src), uri), (nameof(AddScript.Async), true)));
             cut.MarkupMatches($@"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/bootstrap.min.js""></script><script src=""{uri}"" async type=""text/javascript"" onload=""window.Excubo.ScriptInjection.Notify('{uri}')""></script>");
         }
         [InlineData("code.js")]
@@ -44,10 +44,10 @@ namespace Excubo.Blazor.Tests_ScriptInjection
         [Theory]
         public void AddOnceValidUriWithDeferEnabled(string uri)
         {
-            Services.AddScriptInjection();
-            var js = Services.AddMockJsRuntime();
-            IRenderedComponent<Script> cut = null;
-            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<Script>((nameof(Script.Src), uri), (nameof(Script.Defer), true)));
+            _ = Services.AddScriptInjection();
+            var js = Services.AddMockJSRuntime();
+            IRenderedComponent<AddScript> cut = null;
+            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<AddScript>((nameof(AddScript.Src), uri), (nameof(AddScript.Defer), true)));
             cut.MarkupMatches($@"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/bootstrap.min.js""></script><script src=""{uri}"" defer type=""text/javascript"" onload=""window.Excubo.ScriptInjection.Notify('{uri}')""></script>");
         }
         [InlineData("code.js")]
@@ -55,25 +55,25 @@ namespace Excubo.Blazor.Tests_ScriptInjection
         [Theory]
         public void AddOnceValidUriWithAsyncAndDeferEnabled(string uri)
         {
-            Services.AddScriptInjection();
-            var js = Services.AddMockJsRuntime();
-            IRenderedComponent<Script> cut = null;
-            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<Script>((nameof(Script.Src), uri), (nameof(Script.Async), true), (nameof(Script.Defer), true)));
+            _ = Services.AddScriptInjection();
+            var js = Services.AddMockJSRuntime();
+            IRenderedComponent<AddScript> cut = null;
+            NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<AddScript>((nameof(AddScript.Src), uri), (nameof(AddScript.Async), true), (nameof(AddScript.Defer), true)));
             cut.MarkupMatches($@"<script type=""text/javascript"" src=""_content/Excubo.Blazor.ScriptInjection/bootstrap.min.js""></script><script src=""{uri}"" async defer type=""text/javascript"" onload=""window.Excubo.ScriptInjection.Notify('{uri}')""></script>");
         }
         [InlineData("_content/My.Component.Library\".Package/code.min.js")]
         [Theory]
         public void InvalidUri(string uri)
         {
-            Services.AddScriptInjection();
-            var js = Services.AddMockJsRuntime();
-            NUnit.Framework.Assert.Throws<InvalidOperationException>(() => _ = RenderComponent<Script>((nameof(Script.Src), uri)));
+            _ = Services.AddScriptInjection();
+            var js = Services.AddMockJSRuntime();
+            _ = NUnit.Framework.Assert.Throws<InvalidOperationException>(() => _ = RenderComponent<AddScript>((nameof(AddScript.Src), uri)));
         }
         [Fact]
         public void AddTwiceValidUri()
         {
-            Services.AddScriptInjection();
-            var js = Services.AddMockJsRuntime();
+            _ = Services.AddScriptInjection();
+            var js = Services.AddMockJSRuntime();
             IRenderedComponent<MultipleScriptContainer> cut = null;
             NUnit.Framework.Assert.DoesNotThrow(() => cut = RenderComponent<MultipleScriptContainer>());
             cut.MarkupMatches($@"
@@ -84,7 +84,7 @@ namespace Excubo.Blazor.Tests_ScriptInjection
         [Fact]
         public void FailWithoutScripts()
         {
-            Assert.Throws<InvalidOperationException>(() => RenderComponent<Script>());
+            _ = Assert.Throws<InvalidOperationException>(() => RenderComponent<AddScript>());
         }
     }
 }

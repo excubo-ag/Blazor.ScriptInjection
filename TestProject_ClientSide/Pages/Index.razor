@@ -1,8 +1,9 @@
 ﻿@page "/"
-@inject Excubo.Blazor.ScriptInjection.IScriptInjectionTracker sit
 @inject IJSRuntime js
+@using Excubo.Blazor.ScriptInjection
+@inject IScriptInjectionTracker sit
 
-<Excubo.Blazor.ScriptInjection.Script Src="lazy.js" />
+<AddScript Src="lazy.js" />
 
 <button @onclick="Run">Execute code in lazy.js</button>
 

@@ -1,8 +1,9 @@
 ﻿@page "/"
 @inject IJSRuntime js
-@inject Excubo.Blazor.ScriptInjection.IScriptInjectionTracker sit
+@using Excubo.Blazor.ScriptInjection
+@inject IScriptInjectionTracker sit
 
-<Excubo.Blazor.ScriptInjection.Script Src="lazy.js" />
+<AddScript Src="lazy.js" />
 
 @code { 
     protected override async Task OnAfterRenderAsync(bool f)

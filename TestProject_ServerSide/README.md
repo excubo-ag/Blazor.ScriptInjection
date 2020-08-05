@@ -29,7 +29,7 @@ window.helloworld = { again: () => { console.log("hello world"); } };
 <!--to make the actual call to js:-->
 @inject IJSRuntime js
 <!--the script we want-->
-<Script Src="lazy.js" />
+<AddScript Src="lazy.js" />
 
 <button @onclick="Run">Execute code in lazy.js</button>
 
