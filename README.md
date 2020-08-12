@@ -34,17 +34,17 @@ Excubo.Blazor.ScriptInjection is distributed [via nuget.org](https://www.nuget.o
 
 #### Package Manager:
 ```ps
-Install-Package Excubo.Blazor.ScriptInjection -Version 3.0.0
+Install-Package Excubo.Blazor.ScriptInjection -Version 3.0.1
 ```
 
 #### .NET Cli:
 ```cmd
-dotnet add package Excubo.Blazor.ScriptInjection --version 3.0.0
+dotnet add package Excubo.Blazor.ScriptInjection --version 3.0.1
 ```
 
 #### Package Reference
 ```xml
-<PackageReference Include="Excubo.Blazor.ScriptInjection" Version="3.0.0" />
+<PackageReference Include="Excubo.Blazor.ScriptInjection" Version="3.0.1" />
 ```
 
 ### 2. Add ScriptInjection to your services
