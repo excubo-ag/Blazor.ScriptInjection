@@ -1,8 +1,8 @@
 # Excubo.Blazor.ScriptInjection
 
-![Nuget](https://img.shields.io/nuget/v/Excubo.Blazor.ScriptInjection)
-![Nuget](https://img.shields.io/nuget/dt/Excubo.Blazor.ScriptInjection)
-![GitHub](https://img.shields.io/github/license/excubo-ag/Blazor.ScriptInjection)
+[![Nuget](https://img.shields.io/nuget/v/Excubo.Blazor.ScriptInjection)](https://www.nuget.org/packages/Excubo.Blazor.ScriptInjection/)
+[![Nuget](https://img.shields.io/nuget/dt/Excubo.Blazor.ScriptInjection)](https://www.nuget.org/packages/Excubo.Blazor.ScriptInjection/)
+[![GitHub](https://img.shields.io/github/license/excubo-ag/Blazor.ScriptInjection)](https://github.com/excubo-ag/Blazor.ScriptInjection/)
 
 This library brings the `script` tag to Blazor. Since components can occur any number of times, the usage of `script` tags in components is usually frowned upon.
 The `AddScript` component in `Excubo.Blazor.ScriptInjection` is different, as it makes sure that the source file is only put into the page's body once.
@@ -30,7 +30,7 @@ This notification adds a payload of 409 bytes to your page (214 bytes, if your w
 ### 1. Install the nuget package Excubo.Blazor.ScriptInjection
 
 Excubo.Blazor.ScriptInjection is distributed [via nuget.org](https://www.nuget.org/packages/Excubo.Blazor.ScriptInjection/).
-![Nuget](https://img.shields.io/nuget/v/Excubo.Blazor.ScriptInjection)
+[![Nuget](https://img.shields.io/nuget/v/Excubo.Blazor.ScriptInjection)](https://www.nuget.org/packages/Excubo.Blazor.ScriptInjection/)
 
 #### Package Manager:
 ```ps
