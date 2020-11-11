@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RazorLangVersion>3.0</RazorLangVersion>
     <RootNamespace>Excubo.Blazor.Tests_ScriptInjection</RootNamespace>
   </PropertyGroup>
 
