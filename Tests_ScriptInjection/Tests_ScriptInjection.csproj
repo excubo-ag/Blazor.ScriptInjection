@@ -1,14 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
-
+<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Excubo.Blazor.Tests_ScriptInjection</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
-    <PackageReference Include="Moq" Version="4.15.1" />
+    <PackageReference Include="Moq" Version="4.15.2" />
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="bunit" Version="1.0.0-beta-9" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
@@ -22,9 +20,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ScriptInjection\ScriptInjection.csproj" />
   </ItemGroup>
-
 </Project>
