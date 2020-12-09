@@ -1,5 +1,5 @@
 ﻿using Bunit;
-using Bunit.TestDoubles.JSInterop;
+using Bunit.TestDoubles;
 using Excubo.Blazor.ScriptInjection;
 using System;
 using Xunit;
