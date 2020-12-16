@@ -1,7 +1,7 @@
-using Moq;
-using NUnit.Framework;
 using Excubo.Blazor.ScriptInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using NUnit.Framework;
 
 namespace Excubo.Blazor.Tests_ScriptInjection
 {
