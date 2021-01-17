@@ -4,7 +4,7 @@
     <RootNamespace>Excubo.Blazor.Tests_ScriptInjection</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Moq" Version="4.15.2" />
+    <PackageReference Include="Moq" Version="4.16.0" />
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="bunit" Version="1.0.0-preview-01" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
