@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Excubo.Analyzers.Annotations" Version="1.0.1" />
-    <PackageReference Include="Excubo.Analyzers.DependencyInjectionValidation" Version="1.0.11">
+    <PackageReference Include="Excubo.Analyzers.DependencyInjectionValidation" Version="1.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
