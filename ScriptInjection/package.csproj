@@ -20,7 +20,7 @@
   <!--PackageId, Version-->
   <PropertyGroup>
     <PackageId>Excubo.Blazor.ScriptInjection</PackageId>
-    <Version>3.0.17</Version>
+    <Version>3.0.21</Version>
   </PropertyGroup>
   <!--Self Include-->
   <ItemGroup>
