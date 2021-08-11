@@ -34,17 +34,17 @@ Excubo.Blazor.ScriptInjection is distributed [via nuget.org](https://www.nuget.o
 
 #### Package Manager:
 ```ps
-Install-Package Excubo.Blazor.ScriptInjection -Version 3.0.2
+Install-Package Excubo.Blazor.ScriptInjection
 ```
 
 #### .NET Cli:
 ```cmd
-dotnet add package Excubo.Blazor.ScriptInjection --version 3.0.2
+dotnet add package Excubo.Blazor.ScriptInjection
 ```
 
 #### Package Reference
 ```xml
-<PackageReference Include="Excubo.Blazor.ScriptInjection" Version="3.0.2" />
+<PackageReference Include="Excubo.Blazor.ScriptInjection" />
 ```
 
 ### 2. Add ScriptInjection to your services
@@ -52,7 +52,7 @@ dotnet add package Excubo.Blazor.ScriptInjection --version 3.0.2
 ```cs
     //...
     //using Excubo.Blazor.ScriptInjection;
-    services.AddScriptInjection(); // Tip: Use Excubo.Analyzers.DependencyInjectionValidation for warnings when you forget such a dependency
+    services.AddScriptInjection();
     // if your web server supports gzipped javascript files, it's recommended to use the following instead:
     services.AddScriptInjection(gzipped_bootstrap: true);
     // Alternative: if you do not require notification on load of the scripts, disable it completely:
