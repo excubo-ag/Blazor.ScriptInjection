@@ -14,6 +14,10 @@ Simply add `<AddScript Src="_content/My.Library/code.js" />` to any component in
 
 ## Changelog
 
+### Version 3.1.Y
+
+The target framework compatibility is now limited to pre-net5.0 TFMs. This is effectively deprecating this library, for one simple reason: working with [JavaScript isolation](https://docs.microsoft.com/en-us/aspnet/core/blazor/javascript-interoperability/call-javascript-from-dotnet?view=aspnetcore-6.0#javascript-isolation-in-javascript-modules) is a better way to achieve this.
+
 ### Version 3.X.Y
 
 Since `<Script />` fails in Blazor under some circumstances ([aspnetcore#24159](https://github.com/dotnet/aspnetcore/issues/24159)), `Script` is now deprecated in favor of `AddScript`.
